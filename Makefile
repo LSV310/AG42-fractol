@@ -13,7 +13,7 @@ CFLAGS		+= -I$(INCLUDES)
 SRC			= main.c
 OBJ			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
-NAME		= fract-ol
+NAME		= fractol
 
 all: $(NAME)
 

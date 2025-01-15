@@ -1,8 +1,10 @@
 CC			= cc
-CFLAGS		= -g3 #-Wall -Werror -Wextra
+CFLAGS		= -g3 # -Wall -Werror -Wextra
 
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
+
+MLX			= mlx/libmlx.a
 
 INCLUDES	= includes/
 SRC_DIR		= srcs/
@@ -10,20 +12,15 @@ OBJ_DIR		= objs/
 
 CFLAGS		+= -I$(INCLUDES)
 
-SRC			= main.c
+SRC			= main.c mlx.c
 OBJ			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
 NAME		= fractol
 
 all: $(NAME)
 
-# bonus: $(BONUS_NAME)
-
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
-
-# $(BONUS_NAME): $(LIBFT) $(BONUS_OBJ)
-# 	$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIBFT) -o $(BONUS_NAME)
+	$(CC) $(CFLAGS) -Lmlx -lmlx -lXext -lX11 $(OBJ) $(LIBFT) $(MLX) -o $(NAME)
 
 $(LIBFT):
 	make -sC $(LIBFT_DIR)
@@ -38,7 +35,6 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-#	rm -rf $(NAME) $(BONUS_NAME)
 	make fclean -sC libft
 
 re: fclean all

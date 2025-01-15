@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_str_equals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/15 14:21:56 by agruet           ###   ########.fr       */
+/*   Created: 2025/01/13 16:03:27 by agruet            #+#    #+#             */
+/*   Updated: 2025/01/13 16:45:43 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include "libft.h"
-# include "../mlx/mlx.h"
+int	ft_str_equals(const char *s1, const char *s2)
+{
+	int	i;
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-#endif
+	i = 0;
+	if (!s1 || !s2)
+		return (0);
+	while (s1[i] && s2[i])
+	{
+		if ((s1[i] != s2[i]) && (ft_isalpha(s1[i]) && (s1[i] != ft_toupper(s2[i])
+			&& s1[i] != ft_tolower(s2[i]))))
+			return (0);
+		i++;
+	}
+	if (s1[i] || s2[i])
+		return (0);
+	return (1);
+}

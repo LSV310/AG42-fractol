@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:55:29 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/15 14:57:51 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/16 16:48:13 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,27 @@ void	syntax_error_msg()
 	ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");
 }
 
-void	search_set(char *set)
+int	search_set(char *set)
 {
 	if (ft_str_equals(set, "Mandelbrot"))
-		return ;
+		return (1);
 	else if (ft_str_equals(set, "Julia"))
-		return ;
+		return (2);
 	else
 		syntax_error_msg();
+	exit(EXIT_FAILURE);
 }
 
-int	main(int ac, char **av, char **ep)
+int	main(int ac, char **av)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	int	set;
 
-	(void)ep;
-	if (ac <= 1)
+	if (ac < 2 || ac > 2)
 		return (syntax_error_msg(), 1);
-	search_set(av[1]);
-
-	mlx = mlx_init();
-	if (!mlx)
-		return (1);
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	if (!mlx_win)
-		return (1);
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-		&img.endian);
-	mlx_loop(mlx);
+	set = search_set(av[1]);
+	if (set == 1)
+		mlx(&mandelbrot);
+	else if (set == 2)
+		mlx(&julia);
+	return (EXIT_SUCCESS);
 }

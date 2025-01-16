@@ -12,7 +12,7 @@ OBJ_DIR		= objs/
 
 CFLAGS		+= -I$(INCLUDES)
 
-SRC			= main.c mlx.c
+SRC			= main.c mlx.c fract.c
 OBJ			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
 NAME		= fractol
@@ -20,7 +20,7 @@ NAME		= fractol
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) -Lmlx -lmlx -lXext -lX11 $(OBJ) $(LIBFT) $(MLX) -o $(NAME)
+	$(CC) $(CFLAGS) -Lmlx -lmlx -lXext -lX11 -lm $(OBJ) $(LIBFT) $(MLX) -o $(NAME)
 
 $(LIBFT):
 	make -sC $(LIBFT_DIR)

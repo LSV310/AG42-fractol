@@ -6,26 +6,26 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/16 17:04:59 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/17 13:54:00 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	julia(t_fract *fract, t_data *img)
+void	julia(t_fract *fract, t_img *img)
 {
 	int		iterations;
 	double	xtemp;
 
 	iterations = 0;
-	fract->zx = -2 + (double)fract->x * 4 / 1920;
-	fract->zy = -2 + (double)fract->y * 4 / 1080;
+	fract->zx = -2 + (double)fract->x * 4 / img->width;
+	fract->zy = -2 + (double)fract->y * 4 / img->height;
 	fract->cx = -0.745429;
 	fract->cy = 0.05;
 	while (fract->zx * fract->zx + fract->zy * fract->zy < 4 && iterations < 1000)
 	{
 		xtemp = fract->zx * fract->zx - fract->zy * fract->zy;
-		fract->zy = 2 * fract->zx * fract->zy  + fract->cy;
+		fract->zy = 2 * fract->zx * fract->zy + fract->cy;
 		fract->zx = xtemp + fract->cx;
 		iterations += 1;
 	}
@@ -35,18 +35,18 @@ void	julia(t_fract *fract, t_data *img)
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
 }
 
-void	mandelbrot(t_fract *fract, t_data *img)
+void	mandelbrot(t_fract *fract, t_img *img)
 {
 	int		iterations;
 	double	xtemp;
-	double		x;
-	double		y;
+	double	x;
+	double	y;
 
 	x = 0.0;
 	y = 0.0;
 	iterations = 0;
-	fract->zx = -2 + (double)fract->x * 4 / 1920;
-	fract->zy = -2 + (double)fract->y * 4 / 1080;
+	fract->zx = -2 + (double)fract->x * 4 / img->width;
+	fract->zy = -2 + (double)fract->y * 4 / img->height;
 	while (x * x + y * y < 4 && iterations < 1000)
 	{
 		xtemp = x * x + y * y + fract->zx;
@@ -60,21 +60,22 @@ void	mandelbrot(t_fract *fract, t_data *img)
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
 }
 
-void	draw_fract(void *mlx, void *mlx_win, t_data *img, void (*set)(t_fract *, t_data *))
+void	draw_fract(t_data *data)
 {
 	t_fract	fract;
 
+	data->fract = &fract;
 	fract.color = 0xFCBE11;
 	fract.y = 0;
-	while (fract.y < img->height)
+	while (fract.y < data->img->height)
 	{
 		fract.x = 0;
-		while (fract.x < img->width)
+		while (fract.x < data->img->width)
 		{
-			(*set)(&fract, img);
+			data->set(&fract, data->img);
 			fract.x += 1;
 		}
 		fract.y += 1;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, img->img, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
 }

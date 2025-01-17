@@ -1,5 +1,5 @@
 CC			= cc
-CFLAGS		= -g3 # -Wall -Werror -Wextra
+CFLAGS		= -g3 #-Wall -Werror -Wextra
 
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
@@ -12,7 +12,7 @@ OBJ_DIR		= objs/
 
 CFLAGS		+= -I$(INCLUDES)
 
-SRC			= main.c mlx.c fract.c
+SRC			= main.c mlx.c hooks.c fract.c
 OBJ			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
 NAME		= fractol
@@ -20,7 +20,7 @@ NAME		= fractol
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) -Lmlx -lmlx -lXext -lX11 -lm $(OBJ) $(LIBFT) $(MLX) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) $(MLX) $(CFLAGS) -Lmlx -lmlx -lXext -lX11 -lm -o $(NAME)
 
 $(LIBFT):
 	make -sC $(LIBFT_DIR)

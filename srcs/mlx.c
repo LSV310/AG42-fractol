@@ -6,37 +6,64 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/16 16:14:05 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:11:45 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	put_pixel_to_img(t_data *data, int x, int y, int color)
+void	kill_mlx(t_data *data, int exit_code)
+{
+	mlx_destroy_image(data->mlx, data->img->img);
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	if (data->img)
+		free(data->img);
+	exit(exit_code);
+}
+
+t_img	*create_img(t_data *data, int width, int height)
+{
+	t_img	*img;
+
+	img = malloc(sizeof(t_img));
+	if (!img)
+	{
+		data->img = NULL;
+		kill_mlx(data, 1);
+	}
+	img->width = width;
+	img->height = height;
+	img->img = mlx_new_image(data->mlx, img->width, img->height);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+	data->img = img;
+	return (img);
+}
+
+void	put_pixel_to_img(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
-void	mlx(void (*set)(t_fract *, t_data *))
+void	mlx(void (*set)(t_fract *, t_img *))
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	t_data	data;
 
-	mlx = mlx_init();
-	if (!mlx)
+	data.mlx = mlx_init();
+	if (!data.mlx)
 		exit(EXIT_FAILURE);
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	if (!mlx_win)
-		(free(mlx), exit(EXIT_FAILURE));
-	img.width = 1920;
-	img.height = 1080;
-	img.img = mlx_new_image(mlx, img.width, img.height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-		&img.endian);
-	draw_fract(mlx, mlx_win, &img, (*set));
-	mlx_loop(mlx);
+	data.mlx_win = mlx_new_window(data.mlx, 960, 540, "Fractol");
+	if (!data.mlx_win)
+		(free(data.mlx), exit(EXIT_FAILURE));
+	data.set = (*set);
+	mlx_key_hook(data.mlx_win, &key_hook, &data);
+	mlx_mouse_hook(data.mlx_win, &mouse_hook, &data);
+	create_img(&data, 960, 540);
+	draw_fract(&data);
+	mlx_loop(data.mlx);
 }

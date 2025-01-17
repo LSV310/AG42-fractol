@@ -6,13 +6,13 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:55:29 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/16 16:48:13 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/17 13:54:57 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	syntax_error_msg()
+void	syntax_error_msg(void)
 {
 	ft_fprintf(2, "Syntax Error, run the command with the set you want\n");
 	ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");

@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/17 13:54:00 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:07:19 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	julia(t_fract *fract, t_img *img)
 	iterations = 0;
 	fract->zx = -2 + (double)fract->x * 4 / img->width;
 	fract->zy = -2 + (double)fract->y * 4 / img->height;
-	fract->cx = -0.745429;
-	fract->cy = 0.05;
+	fract->cx = 0.3;
+	fract->cy = 0.0;
 	while (fract->zx * fract->zx + fract->zy * fract->zy < 4 && iterations < 1000)
 	{
 		xtemp = fract->zx * fract->zx - fract->zy * fract->zy;

@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/17 16:11:45 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/19 16:41:36 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,22 @@ void	put_pixel_to_img(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	mlx(void (*set)(t_fract *, t_img *))
+void	mlx(void (*set)(t_fract *, t_img *), int width, int height)
 {
 	t_data	data;
 
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		exit(EXIT_FAILURE);
-	data.mlx_win = mlx_new_window(data.mlx, 960, 540, "Fractol");
+	data.mlx_win = mlx_new_window(data.mlx, width, height, "Fractol");
 	if (!data.mlx_win)
 		(free(data.mlx), exit(EXIT_FAILURE));
+	data.intitial_width = width;
+	data.intitial_height = height;
 	data.set = (*set);
 	mlx_key_hook(data.mlx_win, &key_hook, &data);
 	mlx_mouse_hook(data.mlx_win, &mouse_hook, &data);
-	create_img(&data, 960, 540);
+	create_img(&data, width, height);
 	draw_fract(&data);
 	mlx_loop(data.mlx);
 }

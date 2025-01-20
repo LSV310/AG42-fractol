@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/19 16:44:39 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/20 13:07:07 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	kill_mlx(t_data *data, int exit_code);
 // hooks
 int		mouse_hook(int button, int x, int y, t_data *data);
 int		key_hook(int keycode, t_data *data);
+int		destroy_hook(t_data *data);
 
 // fractal
 void	draw_fract(t_data *data);

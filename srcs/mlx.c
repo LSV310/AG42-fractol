@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/19 16:41:36 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/20 13:09:48 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	mlx(void (*set)(t_fract *, t_img *), int width, int height)
 	data.set = (*set);
 	mlx_key_hook(data.mlx_win, &key_hook, &data);
 	mlx_mouse_hook(data.mlx_win, &mouse_hook, &data);
+	mlx_hook(data.mlx_win, 17, 1L<<3, &destroy_hook, &data);
 	create_img(&data, width, height);
 	draw_fract(&data);
 	mlx_loop(data.mlx);

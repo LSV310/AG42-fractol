@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:29:33 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/19 17:07:12 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/20 13:06:49 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ void	zoom_out(t_data *data)
 	t_img	*img;
 
 	img = data->img;
+	if (img->width == data->intitial_width
+		&& img->height == data->intitial_height)
+		return ;
 	img->width = img->width * 0.95;
 	img->height = img->height * 0.95;
-	if (img->width < data->intitial_width || img->height < data->intitial_height)
+	if (img->width < data->intitial_width
+		|| img->height < data->intitial_height)
 	{
 		img->width = data->intitial_width;
 		img->height = data->intitial_height;
@@ -63,5 +67,11 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		kill_mlx(data, 0);
+	return (0);
+}
+
+int	destroy_hook(t_data *data)
+{
+	kill_mlx(data, 0);
 	return (0);
 }

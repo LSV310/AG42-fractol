@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/20 13:07:07 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/20 17:12:28 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ typedef struct s_data
 	int		intitial_height;
 	void	(*set)(t_fract *, t_img *);
 }	t_data;
+
+// parsing
+void	syntax_error_msg(void);
+int		search_set(char *set);
+int		ft_atoi_double(char *str);
 
 // mlx
 void	mlx(void (*set)(t_fract *, t_img *), int width, int height);

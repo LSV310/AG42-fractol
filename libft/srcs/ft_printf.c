@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:16:23 by agruet            #+#    #+#             */
-/*   Updated: 2024/12/19 13:11:03 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/21 15:07:27 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,29 @@ static int	print_normal_chars(const char *s, int *current)
 static int	get_conversion(char c, va_list ap)
 {
 	if (c == 'c')
-		return (ft_putchar_len(va_arg(ap, int)));
+		return (ft_putchar_len_fd(va_arg(ap, int), 1));
 	else if (c == 's')
-		return (ft_putstr_len(va_arg(ap, char *)));
+		return (ft_putstr_len_fd(va_arg(ap, char *), 1));
 	else if (c == 'p')
-		return (ft_printptr(va_arg(ap, unsigned long long)));
+		return (ft_printptr_fd(va_arg(ap, unsigned long long), 1));
 	else if (c == 'd' || c == 'i')
-		return (ft_putnbr_base_len(va_arg(ap, int), BASE_10, 10));
+		return (ft_putnbr_base_len_fd(va_arg(ap, int), BASE_10, 10, 1));
 	else if (c == 'u')
-		return (ft_putnbr_base(va_arg(ap, unsigned int), BASE_10, 10));
+		return (ft_putnbr_base_fd(va_arg(ap, unsigned int), BASE_10, 10, 1));
+	else if (c == 'l')
+		return (ft_putnbr_long_fd(va_arg(ap, long), 1));
 	else if (c == 'x')
-		return (ft_putnbr_base(va_arg(ap, unsigned int), BASE_16L, 16));
+		return (ft_putnbr_base_fd(va_arg(ap, unsigned int), BASE_16L, 16, 1));
 	else if (c == 'X')
-		return (ft_putnbr_base(va_arg(ap, unsigned int), BASE_16U, 16));
+		return (ft_putnbr_base_fd(va_arg(ap, unsigned int), BASE_16U, 16, 1));
 	else if (c == '%')
-		return (ft_putchar_len('%'));
+		return (ft_putchar_len_fd('%', 1));
+	else if (c == 'f')
+		return (ft_putnbr_double_fd(va_arg(ap, double), 1));
 	else if (c == 0)
 		return (0);
 	else
-		return (ft_putchar_len('%') + ft_putchar_len(c));
+		return (ft_putchar_len_fd('%', 1) + ft_putchar_len_fd(c, 1));
 }
 
 int	ft_printf(const char *s, ...)

@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/20 17:31:16 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/21 12:17:23 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,26 @@ int	search_set(char *set)
 double	set_decimal(char *str, int *i)
 {
 	double	result;
+	double	j;
 
 	if (str[*i] == '.')
 		(*i)++;
 	else
 		return (0.0);
+	result = 0.0;
+	j = 0.1;
+	while (ft_isdigit(str[*i]))
+	{
+		result = result + (str[*i] - '0') * j;
+		j /= 10;
+		(*i)++;
+		if (j < 0.000000000000001)
+			return (2.1);
+	}
+	return (result);
 }
 
-double	ft_atoi_double(char *str)
+double	ft_atof(char *str)
 {
 	int		i;
 	int		sign;
@@ -54,20 +66,18 @@ double	ft_atoi_double(char *str)
 			sign = -1;
 		i++;
 	}
-	if (str[i] == '\0')
-		return ((long)INT_MAX + 1);
+	if (!ft_isdigit(str[i]))
+		return (3.0);
 	while (ft_isdigit(str[i]))
 	{
 		result = result * 10 + (str[i++] - '0');
-		if (result * sign > INT_MAX || result * sign < INT_MIN)
-			return ((long)INT_MAX + 1);
+		if (result > 2.0)
+			return (2.1);
 	}
 	result += set_decimal(str, &i);
-	if (str[i] == '.')
-		i++;
-	while (ft_isdigit(str[i]))
-		result = result * 10 + (str[i++] - '0');
+	if (result > 2.0)
+		return (2.1);
 	if (str[i] != '\0')
-		return ((long)INT_MAX + 1);
+		return (3.0);
 	return (result * sign);
 }

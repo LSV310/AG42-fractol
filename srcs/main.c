@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:55:29 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/20 17:04:53 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/21 12:50:55 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,20 @@ int	main(int ac, char **av)
 	if (ac < 2 || ac > 5)
 		return (syntax_error_msg(), 1);
 	set = search_set(av[1]);
-	cx = ft_atoi(av[2]);
-	cy = ft_atoi(av[3]);
 	if (set == 1)
 		mlx(&mandelbrot, 1920, 1080);
 	else if (set == 2)
+	{
+		if (ac < 4)
+			(ft_fprintf(2, "Missing arguments for fractal julia.\n"), exit(EXIT_FAILURE));
+		cx = ft_atof(av[2]);
+		cy = ft_atof(av[3]);
+		if (cx == 3.0 || cy == 3.0)
+			(ft_fprintf(2, "Syntax error\n"), exit(EXIT_FAILURE));
+		if (cx == 2.1 || cy == 2.1)
+			(ft_fprintf(2, "Number too big.\n"), exit(EXIT_FAILURE));
+		ft_printf("%f + %fi\n", cx, cy);
 		mlx(&julia, 1000, 1000);
+	}
 	return (EXIT_SUCCESS);
 }

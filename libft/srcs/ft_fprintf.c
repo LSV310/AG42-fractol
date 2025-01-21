@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 13:02:03 by agruet            #+#    #+#             */
-/*   Updated: 2024/12/19 13:29:23 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/21 15:07:52 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,16 @@ static int	get_conversion(char c, va_list ap, int fd)
 		return (ft_putnbr_base_len_fd(va_arg(ap, int), BASE_10, 10, fd));
 	else if (c == 'u')
 		return (ft_putnbr_base_fd(va_arg(ap, unsigned int), BASE_10, 10, fd));
+	else if (c == 'l')
+		return (ft_putnbr_long_fd(va_arg(ap, long), fd));
 	else if (c == 'x')
 		return (ft_putnbr_base_fd(va_arg(ap, unsigned int), BASE_16L, 16, fd));
 	else if (c == 'X')
 		return (ft_putnbr_base_fd(va_arg(ap, unsigned int), BASE_16U, 16, fd));
 	else if (c == '%')
 		return (ft_putchar_len_fd('%', fd));
+	else if (c == 'f')
+		return (ft_putnbr_double_fd(va_arg(ap, double), fd));
 	else if (c == 0)
 		return (0);
 	else

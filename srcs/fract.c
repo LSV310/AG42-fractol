@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/22 14:21:21 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 18:13:25 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,8 @@ void	draw_fract(t_data *data)
 		}
 		fract.y += 1;
 	}
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
+	printf("%d | %d\n", data->intitial_height / 2, data->img->height / 2);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img,
+		data->intitial_width / 2 - data->img->width / 2,
+		data->intitial_height / 2 - data->img->height / 2);
 }

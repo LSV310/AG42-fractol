@@ -12,7 +12,7 @@ OBJ_DIR		= objs/
 
 CFLAGS		+= -I$(INCLUDES)
 
-SRC			= main.c mlx.c hooks.c fract.c parsing.c
+SRC			= main.c mlx.c hooks.c fract.c parsing.c maths.c
 OBJ			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
 NAME		= fractol

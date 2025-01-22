@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/22 14:24:01 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 18:07:52 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# define MAX_ITERATIONS 200
+# define MAX_ITERATIONS 100
 
 typedef struct s_img
 {
@@ -78,5 +78,9 @@ void	draw_fract(t_data *data);
 // set
 void	julia(t_fract *fract, t_img *img, t_data *data);
 void	mandelbrot(t_fract *fract, t_img *img, t_data *data);
+
+// maths
+int		max(int a, int b);
+int		min(int a, int b);
 
 #endif

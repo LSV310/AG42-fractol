@@ -6,16 +6,21 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/21 12:17:23 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 14:11:32 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	syntax_error_msg(void)
+void	syntax_error_msg(int code)
 {
-	ft_fprintf(2, "Syntax Error, run the command with the set you want\n");
-	ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");
+	if (code == 0)
+	{
+		ft_fprintf(2, "Syntax Error, run the command with the set you want\n");
+		ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");
+	}
+	else if (code == 1)
+		ft_fprintf(2, "Missing arguments for fractal julia.\n");
 }
 
 int	search_set(char *set)
@@ -25,7 +30,7 @@ int	search_set(char *set)
 	else if (ft_str_equals(set, "Julia"))
 		return (2);
 	else
-		syntax_error_msg();
+		syntax_error_msg(1);
 	exit(EXIT_FAILURE);
 }
 
@@ -45,7 +50,7 @@ double	set_decimal(char *str, int *i)
 		result = result + (str[*i] - '0') * j;
 		j /= 10;
 		(*i)++;
-		if (j < 0.000000000000001)
+		if (j < 0.0000000000000001)
 			return (2.1);
 	}
 	return (result);
@@ -68,12 +73,8 @@ double	ft_atof(char *str)
 	}
 	if (!ft_isdigit(str[i]))
 		return (3.0);
-	while (ft_isdigit(str[i]))
-	{
+	while (ft_isdigit(str[i]) && result < 2.0)
 		result = result * 10 + (str[i++] - '0');
-		if (result > 2.0)
-			return (2.1);
-	}
 	result += set_decimal(str, &i);
 	if (result > 2.0)
 		return (2.1);

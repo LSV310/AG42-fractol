@@ -6,13 +6,13 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/20 12:31:51 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 14:21:21 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	julia(t_fract *fract, t_img *img)
+void	julia(t_fract *fract, t_img *img, t_data *data)
 {
 	int		iterations;
 	double	xtemp;
@@ -20,23 +20,23 @@ void	julia(t_fract *fract, t_img *img)
 	iterations = 0;
 	fract->zx = -2 + (double)fract->x * 4 / img->width;
 	fract->zy = -2 + (double)fract->y * 4 / img->height;
-	fract->cx = 0.3;
-	fract->cy = 0.0;
+	fract->cx = data->data_cx;
+	fract->cy = data->data_cy;
 	while (fract->zx * fract->zx + fract->zy * fract->zy < 4
-		&& iterations < 1000)
+		&& iterations < MAX_ITERATIONS)
 	{
 		xtemp = fract->zx * fract->zx - fract->zy * fract->zy;
 		fract->zy = 2 * fract->zx * fract->zy + fract->cy;
 		fract->zx = xtemp + fract->cx;
 		iterations += 1;
 	}
-	if (iterations == 1000)
+	if (iterations == MAX_ITERATIONS)
 		put_pixel_to_img(img, fract->x, fract->y, 0x000000);
 	else
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
 }
 
-void	mandelbrot(t_fract *fract, t_img *img)
+void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
 {
 	int		iterations;
 	double	xtemp;
@@ -73,7 +73,7 @@ void	draw_fract(t_data *data)
 		fract.x = 0;
 		while (fract.x < data->img->width)
 		{
-			data->set(&fract, data->img);
+			data->set(&fract, data->img, data);
 			fract.x += 1;
 		}
 		fract.y += 1;

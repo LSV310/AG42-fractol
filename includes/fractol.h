@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/21 12:17:30 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 14:24:01 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# define M_PI 3.14159265358979323846
+# define MAX_ITERATIONS 200
 
 typedef struct s_img
 {
@@ -51,16 +51,18 @@ typedef struct s_data
 	t_fract	*fract;
 	int		intitial_width;
 	int		intitial_height;
-	void	(*set)(t_fract *, t_img *);
+	double	data_cx;
+	double	data_cy;
+	void	(*set)(t_fract *, t_img *, struct s_data *);
 }	t_data;
 
 // parsing
-void	syntax_error_msg(void);
+void	syntax_error_msg(int code);
 int		search_set(char *set);
 double	ft_atof(char *str);
 
 // mlx
-void	mlx(void (*set)(t_fract *, t_img *), int width, int height);
+void	mlx(void (*set)(), int width, int height, double cx, double cy);
 t_img	*create_img(t_data *data, int width, int height);
 void	put_pixel_to_img(t_img *img, int x, int y, int color);
 void	kill_mlx(t_data *data, int exit_code);
@@ -74,7 +76,7 @@ int		destroy_hook(t_data *data);
 void	draw_fract(t_data *data);
 
 // set
-void	julia(t_fract *fract, t_img *img);
-void	mandelbrot(t_fract *fract, t_img *img);
+void	julia(t_fract *fract, t_img *img, t_data *data);
+void	mandelbrot(t_fract *fract, t_img *img, t_data *data);
 
 #endif

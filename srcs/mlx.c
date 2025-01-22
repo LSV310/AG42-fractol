@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/20 13:09:48 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 14:51:24 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ t_img	*create_img(t_data *data, int width, int height)
 		data->img = NULL;
 		kill_mlx(data, 1);
 	}
+	if (width > height)
+		height = width;
+	else
+		width = height;
 	img->width = width;
 	img->height = height;
 	img->img = mlx_new_image(data->mlx, img->width, img->height);
@@ -50,7 +54,7 @@ void	put_pixel_to_img(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	mlx(void (*set)(t_fract *, t_img *), int width, int height)
+void	mlx(void (*set)(), int width, int height, double cx, double cy)
 {
 	t_data	data;
 
@@ -65,8 +69,10 @@ void	mlx(void (*set)(t_fract *, t_img *), int width, int height)
 	data.set = (*set);
 	mlx_key_hook(data.mlx_win, &key_hook, &data);
 	mlx_mouse_hook(data.mlx_win, &mouse_hook, &data);
-	mlx_hook(data.mlx_win, 17, 1L<<3, &destroy_hook, &data);
+	mlx_hook(data.mlx_win, 17, 1L << 3, &destroy_hook, &data);
 	create_img(&data, width, height);
+	data.data_cx = cx;
+	data.data_cy = cy;
 	draw_fract(&data);
 	mlx_loop(data.mlx);
 }

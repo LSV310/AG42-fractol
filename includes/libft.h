@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 10:54:10 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/21 15:11:07 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 11:07:15 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		ft_putchar_len_fd(int c, int fd);
 int		ft_putstr_len_fd(char *s, int fd);
 int		ft_putnbr_base_fd(unsigned int n, char *base, int base_len, int fd);
 int		ft_putnbr_base_len_fd(int n, char *base, int base_len, int fd);
-int		ft_putnbr_double_fd(double n, int fd);
+int		ft_putnbr_double_fd(double n, int accuracy, int fd);
 int		ft_printptr_fd(unsigned long long ptr, int fd);
 int		ft_putnbr_long_fd(long n, int fd);
 

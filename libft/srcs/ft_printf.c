@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:16:23 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/21 15:07:27 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 11:07:47 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	get_conversion(char c, va_list ap)
 	else if (c == '%')
 		return (ft_putchar_len_fd('%', 1));
 	else if (c == 'f')
-		return (ft_putnbr_double_fd(va_arg(ap, double), 1));
+		return (ft_putnbr_double_fd(va_arg(ap, double), 9, 1));
 	else if (c == 0)
 		return (0);
 	else

@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:20:38 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/21 16:25:23 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/22 12:45:19 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,23 @@ int	ft_putnbr_long_fd(long n, int fd)
 	return (result);
 }
 
-int	ft_putnbr_double_fd(double n, int fd)
+int	ft_putnbr_double_fd(double n, int accuracy, int fd)
 {
-	int	count;
+	int		count;
+	long	exponent;
 
-	count = ft_putnbr_long_fd((long)n, fd);
-	n -= (long)n;
-	write(1, "\n.", 2);
+	count = 0;
+	if (n < 0 && (long)n == 0)
+		count = ft_putchar_len_fd('-', fd);
+	count += ft_putnbr_long_fd((long)n, fd);
+	write(1, ".", 2);
 	count++;
-	printf("%f\n", n);
-	n *= 10;
-	while (n > 10)
-	{
-		// printf("%f\n", n);
-		usleep(1000000);
-		count += ft_putnbr_long_fd((unsigned long)n % 10, fd);
-		n -= (unsigned long)n;
-		n *= 10;
-	}
-	write(1, "--------------\n", 15);
+	exponent = 10;
+	while (--accuracy > 0)
+		exponent *= 10;
+	if (n < 0)
+		n = -n;
+	n *= exponent;
+	count += ft_putnbr_long_fd((long)n, fd);
 	return (count);
 }

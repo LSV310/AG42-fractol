@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/22 18:07:52 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 11:06:04 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_data
 	t_fract	*fract;
 	int		intitial_width;
 	int		intitial_height;
+	int		max_zoomin;
+	int		max_zoomout;
 	double	data_cx;
 	double	data_cy;
 	void	(*set)(t_fract *, t_img *, struct s_data *);

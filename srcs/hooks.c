@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:29:33 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/22 18:02:51 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 11:07:38 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ void	zoom_in(t_data *data)
 	t_img	*img;
 
 	img = data->img;
+	if (img->width == data->max_zoomin
+		&& img->height == data->max_zoomin)
+		return ;
 	img->width = img->width * 1.05;
 	img->height = img->height * 1.05;
-	if (img->width > 9600 || img->height > 5400)
+	if (img->width > data->max_zoomin || img->height > data->max_zoomin)
 	{
-		img->width = 9600;
-		img->height = 5400;
+		img->width = data->max_zoomin;
+		img->height = data->max_zoomin;
 	}
 	mlx_destroy_image(data->mlx, img->img);
 	create_img(data, img->width, img->height);
@@ -36,16 +39,16 @@ void	zoom_out(t_data *data)
 	t_img	*img;
 
 	img = data->img;
-	if (img->width == 1000
-		&& img->height == 1000)
+	if (img->width == data->max_zoomout
+		&& img->height == data->max_zoomout)
 		return ;
 	img->width = img->width * 0.95;
 	img->height = img->height * 0.95;
-	if (img->width < 1000
-		|| img->height < 1000)
+	if (img->width < data->max_zoomout
+		|| img->height < data->max_zoomout)
 	{
-		img->width = 1000;
-		img->height = 1000;
+		img->width = data->max_zoomout;
+		img->height = data->max_zoomout;
 	}
 	mlx_destroy_image(data->mlx, img->img);
 	create_img(data, img->width, img->height);

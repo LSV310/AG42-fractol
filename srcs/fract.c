@@ -6,11 +6,22 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 11:03:29 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 16:00:27 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int	get_color(int index)
+{
+	if (index == 0)
+		return (0x01024a);
+	else if (index == 1)
+		return (0x05024a);
+	else if (index == 2)
+		return (0x05824a);
+	return (0);
+}
 
 void	julia(t_fract *fract, t_img *img, t_data *data)
 {
@@ -64,14 +75,21 @@ void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
 void	draw_fract(t_data *data)
 {
 	t_fract	fract;
+	int		offset_x;
+	int		offset_y;
 
 	data->fract = &fract;
-	fract.color = 0xFCBE11;
-	fract.y = 0;
-	while (fract.y < data->img->height)
+	fract.color = get_color(data->color_range);
+	fract.y = (max(data->intitial_height, data->img->height)
+			- data->intitial_height) / 2;
+	offset_y = fract.y;
+	while (fract.y < data->img->height - offset_y)
 	{
-		fract.x = 0;
-		while (fract.x < data->img->width)
+		fract.x = (max(max(data->intitial_width, data->intitial_height),
+					data->img->width)
+				- max(data->intitial_width, data->intitial_height)) / 2;
+		offset_x = fract.x;
+		while (fract.x < data->img->width - offset_x)
 		{
 			data->set(&fract, data->img, data);
 			fract.x += 1;

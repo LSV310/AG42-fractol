@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 11:06:04 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 15:57:42 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# define MAX_ITERATIONS 100
+# ifndef MAX_ITERATIONS
+#  define MAX_ITERATIONS 500
+# endif
+
+# ifndef MAX_ZOOM
+#  define MAX_ZOOM 200000
+# endif
 
 typedef struct s_img
 {
@@ -56,6 +62,7 @@ typedef struct s_data
 	double	data_cx;
 	double	data_cy;
 	void	(*set)(t_fract *, t_img *, struct s_data *);
+	int		color_range;
 }	t_data;
 
 // parsing
@@ -80,6 +87,11 @@ void	draw_fract(t_data *data);
 // set
 void	julia(t_fract *fract, t_img *img, t_data *data);
 void	mandelbrot(t_fract *fract, t_img *img, t_data *data);
+
+// events
+void	zoom_in(t_data *data);
+void	zoom_out(t_data *data);
+void	switch_color(t_data *data, int next);
 
 // maths
 int		max(int a, int b);

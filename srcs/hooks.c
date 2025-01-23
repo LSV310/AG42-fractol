@@ -6,56 +6,11 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:29:33 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 11:07:38 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 15:55:29 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	zoom_in(t_data *data)
-{
-	t_img	*img;
-
-	img = data->img;
-	if (img->width == data->max_zoomin
-		&& img->height == data->max_zoomin)
-		return ;
-	img->width = img->width * 1.05;
-	img->height = img->height * 1.05;
-	if (img->width > data->max_zoomin || img->height > data->max_zoomin)
-	{
-		img->width = data->max_zoomin;
-		img->height = data->max_zoomin;
-	}
-	mlx_destroy_image(data->mlx, img->img);
-	create_img(data, img->width, img->height);
-	free(img);
-	mlx_clear_window(data->mlx, data->mlx_win);
-	draw_fract(data);
-}
-
-void	zoom_out(t_data *data)
-{
-	t_img	*img;
-
-	img = data->img;
-	if (img->width == data->max_zoomout
-		&& img->height == data->max_zoomout)
-		return ;
-	img->width = img->width * 0.95;
-	img->height = img->height * 0.95;
-	if (img->width < data->max_zoomout
-		|| img->height < data->max_zoomout)
-	{
-		img->width = data->max_zoomout;
-		img->height = data->max_zoomout;
-	}
-	mlx_destroy_image(data->mlx, img->img);
-	create_img(data, img->width, img->height);
-	free(img);
-	mlx_clear_window(data->mlx, data->mlx_win);
-	draw_fract(data);
-}
 
 int	mouse_hook(int button, int x, int y, t_data *data)
 {
@@ -70,6 +25,10 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		kill_mlx(data, 0);
+	if (keycode == 65451)
+		switch_color(data, 1);
+	if (keycode == 65453)
+		switch_color(data, -1);
 	return (0);
 }
 

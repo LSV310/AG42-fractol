@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 15:57:42 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 16:54:20 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	draw_fract(t_data *data);
 // set
 void	julia(t_fract *fract, t_img *img, t_data *data);
 void	mandelbrot(t_fract *fract, t_img *img, t_data *data);
+void	multibrot(t_fract *fract, t_img *img, t_data *data);
 
 // events
 void	zoom_in(t_data *data);

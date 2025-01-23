@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 16:13:40 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 17:01:23 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,42 @@ void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
 
 	x = 0.0;
 	y = 0.0;
-	iterations = 0;
 	fract->zx = -2 + (double)fract->x * 4 / img->width;
 	fract->zy = -2 + (double)fract->y * 4 / img->height;
-	while (x * x + y * y < 4 && iterations < 1000)
+	iterations = 0;
+	while (x * x + y * y < 4 && iterations < MAX_ITERATIONS)
 	{
-		xtemp = x * x + y * y + fract->zx;
+		xtemp = x * x - y * y + fract->zx;
 		y = 2 * x * y + fract->zy;
-		fract->zx = xtemp;
+		x = xtemp;
 		iterations += 1;
 	}
-	if (iterations == 1000)
+	if (iterations == MAX_ITERATIONS)
+		put_pixel_to_img(img, fract->x, fract->y, 0x000000);
+	else
+		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
+}
+
+void	multibrot(t_fract *fract, t_img *img, t_data *data)
+{
+	int		iterations;
+	double	xtemp;
+	double	x;
+	double	y;
+	int		n;
+
+	n = data->data_cx;
+	x = -2 + (double)fract->x * 4 / img->width;
+	y = -2 + (double)fract->y * 4 / img->height;
+	iterations = 0;
+	while (x * x + y * y < 4 && iterations < MAX_ITERATIONS)
+	{
+		xtemp = pow((x * x + y * y), (n/2)*cos(n*atan2(y,x)));
+		y = pow((x*x+y*y), (n/2)*sin(n*atan2(y,x)));
+		x = xtemp;
+		iterations += 1;
+	}
+	if (iterations == MAX_ITERATIONS)
 		put_pixel_to_img(img, fract->x, fract->y, 0x000000);
 	else
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);

@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/22 14:11:32 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 16:53:02 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ void	syntax_error_msg(int code)
 
 int	search_set(char *set)
 {
-	if (ft_str_equals(set, "Mandelbrot"))
+	if (ft_str_equals(set, "Julia"))
 		return (1);
-	else if (ft_str_equals(set, "Julia"))
+	else if (ft_str_equals(set, "Mandelbrot"))
 		return (2);
+	else if (ft_str_equals(set, "Multibrot"))
+		return (3);
 	else
 		syntax_error_msg(1);
 	exit(EXIT_FAILURE);

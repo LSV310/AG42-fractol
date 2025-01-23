@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 15:57:35 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 16:44:37 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	mlx(void (*set)(), int width, int height, double cx, double cy)
 	data.intitial_width = width;
 	data.intitial_height = height;
 	data.max_zoomin = MAX_ZOOM;
-	data.max_zoomout = min(width, height) - height / 24;
+	data.max_zoomout = min(width, height);
 	data.set = (*set);
 	mlx_key_hook(data.mlx_win, &key_hook, &data);
 	mlx_mouse_hook(data.mlx_win, &mouse_hook, &data);

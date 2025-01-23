@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 16:00:27 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/23 16:13:40 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,13 @@ int	get_color(int index)
 	else if (index == 1)
 		return (0x05024a);
 	else if (index == 2)
-		return (0x05824a);
+		return (0x00829b);
+	else if (index == 3)
+		return (0x0f0084);
+	else if (index == 4)
+		return (0x402647);
+	else if (index == 5)
+		return (0x551500);
 	return (0);
 }
 

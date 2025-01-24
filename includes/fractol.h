@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/24 12:32:15 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 13:15:13 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@
 # define MAX_ITERATIONS 500
 # define ZOOM_FACTOR 1.05
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		width;
-	int		height;
-	int		initial_width;
-	int		initial_height;
-	int		endian;
-}	t_img;
-
 typedef struct s_fract
 {
 	int		x;
@@ -44,16 +31,27 @@ typedef struct s_fract
 	int		color;
 }	t_fract;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		width;
+	int		height;
+	int		endian;
+}	t_img;
+
 typedef struct s_data
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_img	*img;
 	t_fract	*fract;
-	double	x_min; // Limite gauche du plan complexe
-	double	x_max; // Limite droite du plan complexe
-	double	y_min; // Limite basse du plan complexe
-	double	y_max; // Limite haute du plan complexe
+	double	x_min;
+	double	x_max;
+	double	y_min;
+	double	y_max;
 	double	data_cx;
 	double	data_cy;
 	void	(*set)(t_fract *, t_img *, struct s_data *);

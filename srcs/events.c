@@ -6,37 +6,37 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:26:37 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/24 12:47:39 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 13:00:33 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void zoom_in(t_data *data, int x, int y)
+void	zoom_in(t_data *data, int x, int y)
 {
-	double mouse_re;
-	double mouse_im;
+	double	mouse_r;
+	double	mouse_i;
 
-	mouse_re = data->x_min + x * (data->x_max - data->x_min) / data->img->width;
-	mouse_im = data->y_min + y * (data->y_max - data->y_min) / data->img->height;
-	data->x_min = mouse_re + (data->x_min - mouse_re) / ZOOM_FACTOR;
-	data->x_max = mouse_re + (data->x_max - mouse_re) / ZOOM_FACTOR;
-	data->y_min = mouse_im + (data->y_min - mouse_im) / ZOOM_FACTOR;
-	data->y_max = mouse_im + (data->y_max - mouse_im) / ZOOM_FACTOR;
+	mouse_r = data->x_min + x * (data->x_max - data->x_min) / data->img->width;
+	mouse_i = data->y_min + y * (data->y_max - data->y_min) / data->img->height;
+	data->x_min = mouse_r + (data->x_min - mouse_r) / ZOOM_FACTOR;
+	data->x_max = mouse_r + (data->x_max - mouse_r) / ZOOM_FACTOR;
+	data->y_min = mouse_i + (data->y_min - mouse_i) / ZOOM_FACTOR;
+	data->y_max = mouse_i + (data->y_max - mouse_i) / ZOOM_FACTOR;
 	draw_fract(data);
 }
 
-void zoom_out(t_data *data, int x, int y)
+void	zoom_out(t_data *data, int x, int y)
 {
-	double mouse_re;
-	double mouse_im;
+	double	mouse_r;
+	double	mouse_i;
 
-	mouse_re = data->x_min + x * (data->x_max - data->x_min) / data->img->width;
-	mouse_im = data->y_min + y * (data->y_max - data->y_min) / data->img->height;
-	data->x_min = mouse_re + (data->x_min - mouse_re) * ZOOM_FACTOR;
-	data->x_max = mouse_re + (data->x_max - mouse_re) * ZOOM_FACTOR;
-	data->y_min = mouse_im + (data->y_min - mouse_im) * ZOOM_FACTOR;
-	data->y_max = mouse_im + (data->y_max - mouse_im) * ZOOM_FACTOR;
+	mouse_r = data->x_min + x * (data->x_max - data->x_min) / data->img->width;
+	mouse_i = data->y_min + y * (data->y_max - data->y_min) / data->img->height;
+	data->x_min = mouse_r + (data->x_min - mouse_r) * ZOOM_FACTOR;
+	data->x_max = mouse_r + (data->x_max - mouse_r) * ZOOM_FACTOR;
+	data->y_min = mouse_i + (data->y_min - mouse_i) * ZOOM_FACTOR;
+	data->y_max = mouse_i + (data->y_max - mouse_i) * ZOOM_FACTOR;
 	draw_fract(data);
 }
 

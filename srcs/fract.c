@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/24 12:26:13 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 13:19:46 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,16 @@ int	get_color(int index)
 	return (0);
 }
 
-void julia(t_fract *fract, t_img *img, t_data *data)
+void	julia(t_fract *fract, t_img *img, t_data *data)
 {
 	int		iterations;
 	double	xtemp;
 
 	iterations = 0;
-	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min) / img->width;
-	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min) / img->height;
+	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min)
+		/ img->width;
+	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min)
+		/ img->height;
 	fract->cx = data->data_cx;
 	fract->cy = data->data_cy;
 	while (fract->zx * fract->zx + fract->zy * fract->zy < 4
@@ -60,11 +62,13 @@ void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
 	double	x;
 	double	y;
 
+	iterations = 0;
 	x = 0.0;
 	y = 0.0;
-	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min) / img->width;
-	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min) / img->height;
-	iterations = 0;
+	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min)
+		/ img->width;
+	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min)
+		/ img->height;
 	while (x * x + y * y < 4 && iterations < MAX_ITERATIONS)
 	{
 		xtemp = x * x - y * y + fract->zx;
@@ -86,10 +90,10 @@ void	multibrot(t_fract *fract, t_img *img, t_data *data)
 	double	y;
 	int		n;
 
+	iterations = 0;
 	n = data->data_cx;
 	x = data->x_min + fract->x * (data->x_max - data->x_min) / img->width;
 	y = data->y_min + fract->y * (data->y_max - data->y_min) / img->height;
-	iterations = 0;
 	while (x * x + y * y < 4 && iterations < MAX_ITERATIONS)
 	{
 		xtemp = pow((x * x + y * y), (n / 2) * cos(n * atan2(y, x)));
@@ -103,9 +107,9 @@ void	multibrot(t_fract *fract, t_img *img, t_data *data)
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
 }
 
-void draw_fract(t_data *data)
+void	draw_fract(t_data *data)
 {
-	t_fract fract;
+	t_fract	fract;
 
 	fract.color = get_color(data->color_range);
 	fract.y = 0;
@@ -119,6 +123,5 @@ void draw_fract(t_data *data)
 		}
 		fract.y++;
 	}
-
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
 }

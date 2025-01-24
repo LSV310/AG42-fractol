@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:29:33 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 15:55:29 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 11:33:31 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	mouse_hook(int button, int x, int y, t_data *data)
 {
 	if (button == 4)
-		zoom_in(data);
+		zoom_in(data, x, y);
 	else if (button == 5)
-		zoom_out(data);
+		zoom_out(data, x, y);
 	return (0);
 }
 

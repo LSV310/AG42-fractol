@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:55:29 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 16:54:41 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 12:43:21 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	main(int ac, char **av)
 			(ft_fprintf(2, "Syntax error\n"), exit(EXIT_FAILURE));
 		if (cx == 2.1 || cy == 2.1)
 			(ft_fprintf(2, "Number too big.\n"), exit(EXIT_FAILURE));
-		mlx(&julia, 1920, 1010, cx, cy);
+		mlx(&julia, 700, 700, cx, cy);
 	}
 	else if (set == 2)
-		mlx(&mandelbrot, 1920, 1010, 0, 0);
+		mlx(&mandelbrot, 700, 700, 0, 0);
 	else if (set == 3)
 		mlx(&multibrot, 1920, 1010, ft_atoi(av[2]), 0);
 	return (EXIT_SUCCESS);

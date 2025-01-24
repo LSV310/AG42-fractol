@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 16:44:37 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 12:19:02 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ void	mlx(void (*set)(), int width, int height, double cx, double cy)
 	data.mlx_win = mlx_new_window(data.mlx, width, height, "Fractol");
 	if (!data.mlx_win)
 		(free(data.mlx), exit(EXIT_FAILURE));
-	data.intitial_width = width;
-	data.intitial_height = height;
-	data.max_zoomin = MAX_ZOOM;
-	data.max_zoomout = min(width, height);
 	data.set = (*set);
 	mlx_key_hook(data.mlx_win, &key_hook, &data);
 	mlx_mouse_hook(data.mlx_win, &mouse_hook, &data);
 	mlx_hook(data.mlx_win, 17, 1L << 3, &destroy_hook, &data);
-	create_img(&data, data.max_zoomout, data.max_zoomout);
+	create_img(&data, width, height);
 	data.data_cx = cx;
 	data.data_cy = cy;
+	data.x_min = -2.0;
+	data.x_max = 2.0;
+	data.y_min = -2.0;
+	data.y_max = 2.0;
 	data.color_range = 0;
 	draw_fract(&data);
 	mlx_loop(data.mlx);

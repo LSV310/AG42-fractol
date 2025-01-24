@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 16:54:20 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 12:32:15 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,8 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# ifndef MAX_ITERATIONS
-#  define MAX_ITERATIONS 500
-# endif
-
-# ifndef MAX_ZOOM
-#  define MAX_ZOOM 200000
-# endif
+# define MAX_ITERATIONS 500
+# define ZOOM_FACTOR 1.05
 
 typedef struct s_img
 {
@@ -55,10 +50,10 @@ typedef struct s_data
 	void	*mlx_win;
 	t_img	*img;
 	t_fract	*fract;
-	int		intitial_width;
-	int		intitial_height;
-	int		max_zoomin;
-	int		max_zoomout;
+	double	x_min; // Limite gauche du plan complexe
+	double	x_max; // Limite droite du plan complexe
+	double	y_min; // Limite basse du plan complexe
+	double	y_max; // Limite haute du plan complexe
 	double	data_cx;
 	double	data_cy;
 	void	(*set)(t_fract *, t_img *, struct s_data *);
@@ -90,8 +85,8 @@ void	mandelbrot(t_fract *fract, t_img *img, t_data *data);
 void	multibrot(t_fract *fract, t_img *img, t_data *data);
 
 // events
-void	zoom_in(t_data *data);
-void	zoom_out(t_data *data);
+void	zoom_in(t_data *data, int x, int y);
+void	zoom_out(t_data *data, int x, int y);
 void	switch_color(t_data *data, int next);
 
 // maths

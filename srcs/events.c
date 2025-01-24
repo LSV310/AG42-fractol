@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:26:37 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/24 12:17:07 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 12:47:39 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void zoom_out(t_data *data, int x, int y)
 
 void	switch_color(t_data *data, int next)
 {
-	if (next == 1 && data->color_range >= 5
-		|| next == -1 && data->color_range <= 0)
+	if ((next == 1 && data->color_range >= 5)
+		|| (next == -1 && data->color_range <= 0))
 		return ;
 	data->color_range = data->color_range + next;
 	draw_fract(data);

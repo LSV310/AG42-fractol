@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/24 13:15:13 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 17:22:08 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_data
 	double	data_cy;
 	void	(*set)(t_fract *, t_img *, struct s_data *);
 	int		color_range;
+	int		win_width;
+	int		win_height;
 }	t_data;
 
 // parsing

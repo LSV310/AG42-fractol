@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/24 13:19:46 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/24 18:13:43 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	multibrot(t_fract *fract, t_img *img, t_data *data)
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
 }
 
-void	draw_fract(t_data *data)
+/* void	draw_fract(t_data *data)
 {
 	t_fract	fract;
 
@@ -124,4 +124,41 @@ void	draw_fract(t_data *data)
 		fract.y++;
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img, 0, 0);
+} */
+
+
+void	draw_fract(t_data *data)
+{
+	t_fract	fract;
+	int		offset_x;
+	int		offset_y;
+	int		compteur1;
+	int		compteur2;
+
+	data->fract = &fract;
+	fract.color = get_color(data->color_range);
+	fract.y = (max(data->win_width, data->img->height)
+			- data->win_width) / 2;
+	offset_y = fract.y;
+	compteur2 = 0;
+	while (fract.y < data->img->height - offset_y)
+	{
+		compteur2++;
+		compteur1 = 0;
+		fract.x = (max(max(data->win_width, data->win_height),
+					data->img->width)
+				- max(data->win_width, data->win_height)) / 2;
+		offset_x = fract.x;
+		while (fract.x < data->img->width - offset_x)
+		{
+			data->set(&fract, data->img, data);
+			fract.x += 1;
+			compteur1++;
+		}
+		fract.y += 1;
+	}
+	ft_printf("%dx%d\n", compteur1, compteur2);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img->img,
+		(data->win_width - data->img->width) / 2,
+		(data->win_height - data->img->height) / 2);
 }

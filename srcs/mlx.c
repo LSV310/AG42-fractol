@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 15:12:13 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:11:56 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	adjust_viewport(t_data *data)
 	double	range_x;
 	double	range_y;
 
-	aspect_ratio = (double)data->win_width / (double)data->win_height;
+	aspect_ratio = (double)data->img->width / (double)data->img->height;
 	range_x = data->x_max - data->x_min;
 	range_y = data->y_max - data->y_min;
 	if (aspect_ratio > 1.0)
@@ -82,8 +82,6 @@ void	mlx(void (*set)(), int width, int height, double cx, double cy)
 	if (!data.mlx_win)
 		(free(data.mlx), exit(EXIT_FAILURE));
 	data.set = (*set);
-	data.win_width = width;
-	data.win_height = height;
 	mlx_key_hook(data.mlx_win, &key_hook, &data);
 	mlx_mouse_hook(data.mlx_win, &mouse_hook, &data);
 	mlx_hook(data.mlx_win, 17, 1L << 3, &destroy_hook, &data);
@@ -96,6 +94,7 @@ void	mlx(void (*set)(), int width, int height, double cx, double cy)
 	data.y_max = 3.0;
 	adjust_viewport(&data);
 	data.color_range = 0;
+	data.max_iterations = MAX_ITERATIONS;
 	draw_fract(&data);
 	mlx_loop(data.mlx);
 }

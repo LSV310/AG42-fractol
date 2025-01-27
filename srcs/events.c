@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:26:37 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 11:05:29 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:26:28 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,20 @@ void	switch_color(t_data *data, int next)
 		return ;
 	data->color_range = data->color_range + next;
 	draw_fract(data);
+}
+
+void	increase_precision(t_data *data)
+{
+	if (data->max_iterations < 2000)
+		data->max_iterations += 20;
+	draw_fract(data);
+	return ;
+}
+
+void	reduce_precision(t_data *data)
+{
+	if (data->max_iterations > 20)
+		data->max_iterations -= 20;
+	draw_fract(data);
+	return ;
 }

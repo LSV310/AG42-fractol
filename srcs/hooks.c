@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:29:33 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 14:45:17 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:18:22 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 65307)
 		kill_mlx(data, EXIT_SUCCESS);
-	if (keycode == 65451)
+	else if (keycode == 65451)
 		switch_color(data, 1);
-	if (keycode == 65453)
+	else if (keycode == 65453)
 		switch_color(data, -1);
+	else if (keycode == 65450)
+		increase_precision(data);
+	else if (keycode == 65455)
+		reduce_precision(data);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 11:04:31 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:21:39 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	julia(t_fract *fract, t_img *img, t_data *data)
 	fract->cx = data->data_cx;
 	fract->cy = data->data_cy;
 	while (fract->zx * fract->zx + fract->zy * fract->zy < 4
-		&& iterations < MAX_ITERATIONS)
+		&& iterations < data->max_iterations)
 	{
 		xtemp = fract->zx * fract->zx - fract->zy * fract->zy;
 		fract->zy = 2 * fract->zx * fract->zy + fract->cy;
 		fract->zx = xtemp + fract->cx;
 		iterations++;
 	}
-	if (iterations == MAX_ITERATIONS)
+	if (iterations == data->max_iterations)
 		put_pixel_to_img(img, fract->x, fract->y, 0x000000);
 	else
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
@@ -69,14 +69,14 @@ void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
 		/ img->width;
 	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min)
 		/ img->height;
-	while (x * x + y * y < 4 && iterations < MAX_ITERATIONS)
+	while (x * x + y * y < 4 && iterations < data->max_iterations)
 	{
 		xtemp = x * x - y * y + fract->zx;
 		y = 2 * x * y + fract->zy;
 		x = xtemp;
 		iterations += 1;
 	}
-	if (iterations == MAX_ITERATIONS)
+	if (iterations == data->max_iterations)
 		put_pixel_to_img(img, fract->x, fract->y, 0x000000);
 	else
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
@@ -94,14 +94,14 @@ void	multibrot(t_fract *fract, t_img *img, t_data *data)
 	n = data->data_cx;
 	x = data->x_min + fract->x * (data->x_max - data->x_min) / img->width;
 	y = data->y_min + fract->y * (data->y_max - data->y_min) / img->height;
-	while (x * x + y * y < 4 && iterations < MAX_ITERATIONS)
+	while (x * x + y * y < 4 && iterations < data->max_iterations)
 	{
 		xtemp = pow((x * x + y * y), (n / 2) * cos(n * atan2(y, x)));
 		y = pow((x * x + y * y), (n / 2) * sin(n * atan2(y, x)));
 		x = xtemp;
 		iterations += 1;
 	}
-	if (iterations == MAX_ITERATIONS)
+	if (iterations == data->max_iterations)
 		put_pixel_to_img(img, fract->x, fract->y, 0x000000);
 	else
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);

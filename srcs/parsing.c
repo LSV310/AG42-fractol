@@ -6,21 +6,16 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/23 16:53:02 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:39:18 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	syntax_error_msg(int code)
+void	syntax_error_msg(void)
 {
-	if (code == 0)
-	{
-		ft_fprintf(2, "Syntax Error, run the command with the set you want\n");
-		ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");
-	}
-	else if (code == 1)
-		ft_fprintf(2, "Missing arguments for fractal julia.\n");
+	ft_fprintf(2, "Syntax Error, run the command with the set you want\n");
+	ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");
 }
 
 int	search_set(char *set)
@@ -31,8 +26,7 @@ int	search_set(char *set)
 		return (2);
 	else if (ft_str_equals(set, "Multibrot"))
 		return (3);
-	else
-		syntax_error_msg(1);
+	syntax_error_msg();
 	exit(EXIT_FAILURE);
 }
 

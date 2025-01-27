@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 11:21:50 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 14:53:51 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,12 @@ typedef struct s_data
 }	t_data;
 
 // parsing
-void	syntax_error_msg(int code);
+void	error_msg(int code);
 int		search_set(char *set);
 double	ft_atof(char *str);
 
 // mlx
 void	mlx(void (*set)(), int width, int height, double cx, double cy);
-t_img	*create_img(t_data *data, int width, int height);
 void	put_pixel_to_img(t_img *img, int x, int y, int color);
 void	kill_mlx(t_data *data, int exit_code);
 
@@ -89,10 +88,8 @@ int		mouse_hook(int button, int x, int y, t_data *data);
 int		key_hook(int keycode, t_data *data);
 int		destroy_hook(t_data *data);
 
-// fractal
+// fractals
 void	draw_fract(t_data *data);
-
-// set
 void	julia(t_fract *fract, t_img *img, t_data *data);
 void	mandelbrot(t_fract *fract, t_img *img, t_data *data);
 void	multibrot(t_fract *fract, t_img *img, t_data *data);
@@ -101,9 +98,5 @@ void	multibrot(t_fract *fract, t_img *img, t_data *data);
 void	zoom_in(t_data *data, int x, int y);
 void	zoom_out(t_data *data, int x, int y);
 void	switch_color(t_data *data, int next);
-
-// maths
-int		max(int a, int b);
-int		min(int a, int b);
 
 #endif

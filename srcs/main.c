@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:55:29 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 15:43:26 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:02:32 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	start_julia(int ac, char **av)
 	cx = ft_atof(av[2]);
 	cy = ft_atof(av[3]);
 	if (cx == 3.0)
-		(ft_fprintf(2, "Syntax Error, wrong decimal part\n"), exit(1));
+		(ft_fprintf(2, "Syntax Error, wrong real part\n"), exit(1));
 	if (cx == 2.1)
-		(ft_fprintf(2, "Syntax Error, decimal part too big\n"), exit(1));
+		(ft_fprintf(2, "Syntax Error, real part too big\n"), exit(1));
 	if (cy == 3.0)
 		(ft_fprintf(2, "Syntax Error, wrong imaginary part\n"), exit(1));
 	if (cy == 2.1)

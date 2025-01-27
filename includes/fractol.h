@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/24 17:22:08 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 11:21:50 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,21 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# define MAX_ITERATIONS 500
-# define ZOOM_FACTOR 1.05
+# ifndef MAX_ITERATIONS
+#  define MAX_ITERATIONS 500
+# endif
+
+# ifndef ZOOM_FACTOR
+#  define ZOOM_FACTOR 1.05
+# endif
+
+# ifndef WIDTH
+#  define WIDTH 1920
+# endif
+
+# ifndef HEIGHT
+#  define HEIGHT 1010
+# endif
 
 typedef struct s_fract
 {

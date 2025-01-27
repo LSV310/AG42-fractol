@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 11:04:51 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:12:13 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_img	*create_img(t_data *data, int width, int height)
 	if (!img)
 	{
 		data->img = NULL;
-		kill_mlx(data, 1);
+		kill_mlx(data, EXIT_FAILURE);
 	}
 	img->width = width;
 	img->height = height;

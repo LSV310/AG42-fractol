@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 16:11:56 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/29 12:35:34 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_img	*create_img(t_data *data, int width, int height)
 	}
 	img->width = width;
 	img->height = height;
+	img->w1 = 1.0 / (double)width;
+	img->h1 = 1.0 / (double)height;
 	img->img = mlx_new_image(data->mlx, img->width, img->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);

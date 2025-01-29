@@ -12,12 +12,13 @@ OBJ_DIR		= objs/
 
 CFLAGS		+= -I$(INCLUDES)
 
-CFLAGS		+= -D MAX_ITERATIONS=500
-CFLAGS		+= -D ZOOM_FACTOR=1.05
+CFLAGS		+= -D MAX_ITERATIONS=200
+CFLAGS		+= -D ZOOM_FACTOR=1.08
+CFLAGS		+= -D MOVE_FACTOR=0.1
 CFLAGS		+= -D WIDTH=1920
 CFLAGS		+= -D HEIGHT=1010
 
-SRC			= main.c mlx.c hooks.c fract.c parsing.c events.c
+SRC			= main.c mlx.c hooks.c fract.c parsing.c events.c movements.c
 OBJ			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
 NAME		= fractol

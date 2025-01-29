@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 16:15:37 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/29 12:38:01 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 #  define ZOOM_FACTOR 1.05
 # endif
 
+# ifndef MOVE_FACTOR
+#  define MOVE_FACTOR 0.1
+# endif
+
 # ifndef WIDTH
 #  define WIDTH 1920
 # endif
@@ -35,12 +39,12 @@
 
 typedef struct s_fract
 {
-	int		x;
-	int		y;
 	double	zx;
 	double	zy;
 	double	cx;
 	double	cy;
+	int		x;
+	int		y;
 	int		color;
 }	t_fract;
 
@@ -48,6 +52,8 @@ typedef struct s_img
 {
 	void	*img;
 	char	*addr;
+	double	w1;
+	double	h1;
 	int		bits_per_pixel;
 	int		line_length;
 	int		width;
@@ -99,5 +105,9 @@ void	zoom_out(t_data *data, int x, int y);
 void	switch_color(t_data *data, int next);
 void	increase_precision(t_data *data);
 void	reduce_precision(t_data *data);
+void	go_up(t_data *data);
+void	go_down(t_data *data);
+void	go_right(t_data *data);
+void	go_left(t_data *data);
 
 #endif

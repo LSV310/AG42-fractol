@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/29 12:27:39 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/29 17:18:23 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,6 @@ int	get_color(int index)
 		return (0x551500);
 	return (0);
 }
-
-/* void	julia(t_fract *fract, t_img *img, t_data *data)
-{
-	int		iterations;
-	double	xtemp;
-
-	iterations = 0;
-	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min)
-		/ img->width;
-	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min)
-		/ img->height;
-	fract->cx = data->data_cx;
-	fract->cy = data->data_cy;
-	while (fract->zx * fract->zx + fract->zy * fract->zy < 4
-		&& iterations < data->max_iterations)
-	{
-		xtemp = fract->zx * fract->zx - fract->zy * fract->zy;
-		fract->zy = 2 * fract->zx * fract->zy + fract->cy;
-		fract->zx = xtemp + fract->cx;
-		iterations++;
-	}
-	if (iterations == data->max_iterations)
-		put_pixel_to_img(img, fract->x, fract->y, 0x000000);
-	else
-		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
-} */
 
 void	julia(t_fract *fract, t_img *img, t_data *data)
 {
@@ -83,33 +57,6 @@ void	julia(t_fract *fract, t_img *img, t_data *data)
 	else
 		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
 }
-
-/* void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
-{
-	int		iterations;
-	double	xtemp;
-	double	x;
-	double	y;
-
-	iterations = 0;
-	x = 0.0;
-	y = 0.0;
-	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min)
-		/ img->width;
-	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min)
-		/ img->height;
-	while (x * x + y * y < 4 && iterations < data->max_iterations)
-	{
-		xtemp = x * x - y * y + fract->zx;
-		y = 2 * x * y + fract->zy;
-		x = xtemp;
-		iterations += 1;
-	}
-	if (iterations == data->max_iterations)
-		put_pixel_to_img(img, fract->x, fract->y, 0x000000);
-	else
-		put_pixel_to_img(img, fract->x, fract->y, fract->color * iterations);
-} */
 
 void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
 {
@@ -154,8 +101,8 @@ void	multibrot(t_fract *fract, t_img *img, t_data *data)
 	y = data->y_min + fract->y * (data->y_max - data->y_min) * img->h1;
 	while (x * x + y * y < 4 && iterations < data->max_iterations)
 	{
-		xtemp = pow((x * x + y * y), (n / 2) * cos(n * atan2(y, x)));
-		y = pow((x * x + y * y), (n / 2) * sin(n * atan2(y, x)));
+		xtemp = pow(x*x + y*y, n * 0.5) * cos(n * atan2(y, x)) + fract->zx;
+		y = pow(x*x + y*y, n * 0.5) * sin(n * atan2(y, x)) + fract->zy;
 		x = xtemp;
 		iterations += 1;
 	}

@@ -6,28 +6,11 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:01:53 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/29 17:18:23 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/30 16:45:06 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	get_color(int index)
-{
-	if (index == 0)
-		return (0x01024a);
-	else if (index == 1)
-		return (0x05024a);
-	else if (index == 2)
-		return (0x00829b);
-	else if (index == 3)
-		return (0x0f0084);
-	else if (index == 4)
-		return (0x402647);
-	else if (index == 5)
-		return (0x551500);
-	return (0);
-}
 
 void	julia(t_fract *fract, t_img *img, t_data *data)
 {
@@ -36,18 +19,17 @@ void	julia(t_fract *fract, t_img *img, t_data *data)
 	double	zx;
 	double	zy;
 
+	data->set_index = 0;
 	iterations = 0;
 	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min) * img->w1;
 	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min) * img->h1;
-	fract->cx = data->data_cx;
-	fract->cy = data->data_cy;
 	zx = fract->zx * fract->zx;
 	zy = fract->zy * fract->zy;
 	while (zx + zy < 4 && iterations < data->max_iterations)
 	{
 		xtemp = zx - zy;
-		fract->zy = 2 * fract->zx * fract->zy + fract->cy;
-		fract->zx = xtemp + fract->cx;
+		fract->zy = 2 * fract->zx * fract->zy + data->cy;
+		fract->zx = xtemp + data->cx;
 		iterations++;
 		zx = fract->zx * fract->zx;
 		zy = fract->zy * fract->zy;
@@ -66,9 +48,9 @@ void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
 	double	x2;
 	double	y2;
 
+	data->set_index = 1;
 	iterations = 0;
-	x = 0.0;
-	y = 0.0;
+	x = ((y = 0.0));
 	x2 = 0.0;
 	y2 = 0.0;
 	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min) * img->w1;
@@ -90,20 +72,22 @@ void	mandelbrot(t_fract *fract, t_img *img, t_data *data)
 void	multibrot(t_fract *fract, t_img *img, t_data *data)
 {
 	int		iterations;
-	double	xtemp;
 	double	x;
 	double	y;
-	int		n;
+	double	xy;
+	double	atan_val;
 
+	data->set_index = 2;
 	iterations = 0;
-	n = data->data_cx;
-	x = data->x_min + fract->x * (data->x_max - data->x_min) * img->w1;
-	y = data->y_min + fract->y * (data->y_max - data->y_min) * img->h1;
-	while (x * x + y * y < 4 && iterations < data->max_iterations)
+	x = ((y = (xy = 0.0)));
+	fract->zx = data->x_min + fract->x * (data->x_max - data->x_min) * img->w1;
+	fract->zy = data->y_min + fract->y * (data->y_max - data->y_min) * img->h1;
+	while (xy < 4 && iterations < data->max_iterations)
 	{
-		xtemp = pow(x*x + y*y, n * 0.5) * cos(n * atan2(y, x)) + fract->zx;
-		y = pow(x*x + y*y, n * 0.5) * sin(n * atan2(y, x)) + fract->zy;
-		x = xtemp;
+		atan_val = data->cx * atan2(y, x);
+		x = pow(xy, data->cx * 0.5) * cos(atan_val) + fract->zx;
+		y = pow(xy, data->cx * 0.5) * sin(atan_val) + fract->zy;
+		xy = x * x + y * y;
 		iterations += 1;
 	}
 	if (iterations == data->max_iterations)

@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 15:39:18 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/30 17:12:50 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ double	ft_atof(char *str)
 	result += set_decimal(str, &i);
 	if (result > 2.0)
 		return (2.1);
-	if (str[i] != '\0')
+	if (str[i] != '\0' && str[i] != '\n')
 		return (3.0);
 	return (result * sign);
 }

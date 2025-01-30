@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   tab_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 11:10:23 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/30 17:00:13 by agruet           ###   ########.fr       */
+/*   Created: 2025/01/30 16:57:23 by agruet            #+#    #+#             */
+/*   Updated: 2025/01/30 17:00:38 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	tab_len(char **tab)
 {
 	size_t	i;
 
-	if (!s)
+	if (!tab)
 		return (0);
 	i = 0;
-	while (s[i])
+	while (tab[i])
 		i++;
 	return (i);
 }

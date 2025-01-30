@@ -18,7 +18,7 @@ CFLAGS		+= -D MOVE_FACTOR=0.1
 CFLAGS		+= -D WIDTH=1920
 CFLAGS		+= -D HEIGHT=1010
 
-SRC			= main.c mlx.c hooks.c fract.c parsing.c events.c movements.c
+SRC			= main.c mlx.c hooks.c fract.c parsing.c events.c movements.c tune_fractal.c tune_fractal2.c
 OBJ			= $(patsubst %.c, $(OBJ_DIR)%.o, $(SRC))
 
 NAME		= fractol

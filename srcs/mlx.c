@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/29 12:35:34 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/30 13:52:36 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	mlx(void (*set)(), int width, int height, double cx, double cy)
 	mlx_mouse_hook(data.mlx_win, &mouse_hook, &data);
 	mlx_hook(data.mlx_win, 17, 1L << 3, &destroy_hook, &data);
 	create_img(&data, width, height);
-	data.data_cx = cx;
-	data.data_cy = cy;
+	data.cx = cx;
+	data.cy = cy;
 	data.x_min = -3.0;
 	data.x_max = 3.0;
 	data.y_min = -3.0;

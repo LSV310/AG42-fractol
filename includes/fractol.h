@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/29 12:38:01 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/30 16:50:06 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct s_fract
 {
 	double	zx;
 	double	zy;
-	double	cx;
-	double	cy;
 	int		x;
 	int		y;
 	int		color;
@@ -71,11 +69,12 @@ typedef struct s_data
 	double	x_max;
 	double	y_min;
 	double	y_max;
-	double	data_cx;
-	double	data_cy;
+	double	cx;
+	double	cy;
 	void	(*set)(t_fract *, t_img *, struct s_data *);
 	int		color_range;
 	int		max_iterations;
+	int		set_index;
 }	t_data;
 
 // parsing
@@ -98,6 +97,7 @@ void	draw_fract(t_data *data);
 void	julia(t_fract *fract, t_img *img, t_data *data);
 void	mandelbrot(t_fract *fract, t_img *img, t_data *data);
 void	multibrot(t_fract *fract, t_img *img, t_data *data);
+int		get_color(int index);
 
 // events
 void	zoom_in(t_data *data, int x, int y);
@@ -109,5 +109,11 @@ void	go_up(t_data *data);
 void	go_down(t_data *data);
 void	go_right(t_data *data);
 void	go_left(t_data *data);
+void	add_head(t_data *data);
+void	del_head(t_data *data);
+void	increase_complex(t_data *data);
+void	decrease_complex(t_data *data);
+void	set_precision(t_data *data);
+void	set_complex(t_data *data);
 
 #endif

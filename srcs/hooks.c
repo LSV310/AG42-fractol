@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:29:33 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/31 12:41:03 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 13:26:31 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	key_hook(int keycode, t_data *data)
 	else if (keycode == 65455)
 		reduce_precision(data);
 	else if (keycode == 65361)
-		increase_complex(data);
-	else if (keycode == 65363)
 		decrease_complex(data);
+	else if (keycode == 65363)
+		increase_complex(data);
 	else if (keycode == 65439)
 		set_precision(data);
 	else if (keycode == 65421)

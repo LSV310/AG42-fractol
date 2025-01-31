@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:29:33 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/31 12:14:20 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 12:41:03 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	key_hook(int keycode, t_data *data)
 		return (0);
 	else
 		search_movements(keycode, data);
-	ft_printf("%d\n", keycode);
 	return (0);
 }
 

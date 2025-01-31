@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/31 12:24:52 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 13:00:12 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ void	print_msg(int nb)
 	}
 	else
 	{
-		ft_printf("Keybinds :\n\tShow this: NUMPAD0\n\tMove right: D\n\t");
-		ft_printf("Move left: A\n\tMove up: W\n\tMove down: S\n\t");
-		ft_printf("Zoom in: MOUSEWHEEL UP\n\tZoom out: MOUSEWHEEL DOWN\n\t");
-		ft_printf("Increase precision: MULTIPLY\n\tReduce precision: DIVIDE");
-		ft_printf("Switch colors: ADD/SUBTRACT\n\tMove right: Dn\n\t");
-		ft_printf("Keybinds :\n\tShow this: NUMPAD0\n\tMove right: Dn\n\t");
+		ft_printf("-----------------------------------------------------\n");
+		ft_printf("Keybinds :\nNUMPAD0:\tShow this\nW:\t\tMove up\n");
+		ft_printf("A:\t\tMove left\nS:\t\tMove down\nD:\t\tMove right\n");
+		ft_printf("MOUSEWHEEL:\tZoom in / Zoom out\nMULTIPLY:\t");
+		ft_printf("Increase precision\nDIVIDE:\t\tReduce precision\n");
+		ft_printf("ADD/SUBTRACT:\tSwitch colors\nDECIMAL:\tSet precision\n");
+		ft_printf("NUMPADENTER:\tSet complex number (Julia)\n");
+		ft_printf("RIGHTARROW:\tIncrease complex number (Julia)\n");
+		ft_printf("LEFTARROW:\tReduce complex number (Julia)\n");
+		ft_printf("UPARROW:\tIncrease heads amount (Multibrot)\n");
+		ft_printf("DOWNARROW:\tReduce heads amount (Multibrot)\n");
 	}
 }
 

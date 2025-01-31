@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:56 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/30 13:52:36 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 14:38:26 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	kill_mlx(t_data *data, int exit_code)
 	exit(exit_code);
 }
 
-t_img	*create_img(t_data *data, int width, int height)
+static t_img	*create_img(t_data *data, int width, int height)
 {
 	t_img	*img;
 
@@ -44,7 +44,7 @@ t_img	*create_img(t_data *data, int width, int height)
 	return (img);
 }
 
-void	adjust_viewport(t_data *data)
+static void	adjust_viewport(t_data *data)
 {
 	double	aspect_ratio;
 	double	range_x;

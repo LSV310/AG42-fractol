@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:44:43 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/31 11:21:51 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 14:37:41 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_precision(t_data *data)
 	draw_fract(data);
 }
 
-int	parse_complex(double *cx, double *cy, char **split)
+static int	parse_complex(double *cx, double *cy, char **split)
 {
 	int	len;
 

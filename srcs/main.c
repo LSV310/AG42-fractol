@@ -6,13 +6,13 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:55:29 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/31 12:14:58 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 14:38:48 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	start_julia(int ac, char **av)
+static void	start_julia(int ac, char **av)
 {
 	double	cx;
 	double	cy;
@@ -40,7 +40,7 @@ void	start_julia(int ac, char **av)
 	mlx(&julia, WIDTH, HEIGHT, cx, cy);
 }
 
-void	start_mandelbrot(int ac)
+static void	start_mandelbrot(int ac)
 {
 	if (ac > 2)
 	{
@@ -50,7 +50,7 @@ void	start_mandelbrot(int ac)
 	mlx(&mandelbrot, WIDTH, HEIGHT, 0, 0);
 }
 
-void	start_multibrot(int ac, char **av)
+static void	start_multibrot(int ac, char **av)
 {
 	if (ac < 3)
 		(ft_fprintf(2, "Syntax Error, missing argument\n"), exit(1));

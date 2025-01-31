@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/31 13:10:52 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 14:37:12 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	search_set(char *set)
 	exit(EXIT_FAILURE);
 }
 
-double	set_decimal(char *str, int *i)
+static double	set_decimal(char *str, int *i)
 {
 	double	result;
 	double	j;

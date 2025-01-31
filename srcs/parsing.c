@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/31 13:00:12 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 13:10:52 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	print_msg(int nb)
 	if (nb == 0)
 	{
 		ft_fprintf(2, "Syntax Error, run the command with the set you want\n");
-		ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");
+		ft_fprintf(2, "Available sets:\t--> Julia\n\t\t--> Mandelbrot\n");
+		ft_fprintf(2, "\t\t--> Multibrot\n");
 	}
 	else
 	{

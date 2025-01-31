@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:29:33 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/30 17:17:40 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 12:14:20 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	return (0);
 }
 
-void	search_movements(int keycode, t_data *data)
+static void	search_movements(int keycode, t_data *data)
 {
 	if (keycode == 119)
 		go_up(data);
@@ -31,6 +31,15 @@ void	search_movements(int keycode, t_data *data)
 		go_right(data);
 	else if (keycode == 97)
 		go_left(data);
+}
+
+static int	change_heads(int keycode, t_data *data)
+{
+	if (keycode == 65362)
+		return (add_head(data), 1);
+	else if (keycode == 65364)
+		return (del_head(data), 1);
+	return (0);
 }
 
 int	key_hook(int keycode, t_data *data)
@@ -47,18 +56,19 @@ int	key_hook(int keycode, t_data *data)
 		reduce_precision(data);
 	else if (keycode == 65361)
 		increase_complex(data);
-	else if (keycode == 65362)
-		add_head(data);
 	else if (keycode == 65363)
 		decrease_complex(data);
-	else if (keycode == 65364)
-		del_head(data);
-	else if (keycode == 65469)
+	else if (keycode == 65439)
 		set_precision(data);
 	else if (keycode == 65421)
 		set_complex(data);
+	else if (keycode == 65438)
+		print_msg(1);
+	else if (change_heads(keycode, data))
+		return (0);
 	else
 		search_movements(keycode, data);
+	ft_printf("%d\n", keycode);
 	return (0);
 }
 

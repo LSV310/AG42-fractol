@@ -6,16 +6,28 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:04:46 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/30 17:12:50 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 12:24:52 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	syntax_error_msg(void)
+void	print_msg(int nb)
 {
-	ft_fprintf(2, "Syntax Error, run the command with the set you want\n");
-	ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");
+	if (nb == 0)
+	{
+		ft_fprintf(2, "Syntax Error, run the command with the set you want\n");
+		ft_fprintf(2, "Available sets:\t--> Mandelbrot\n\t\t--> Julia\n");
+	}
+	else
+	{
+		ft_printf("Keybinds :\n\tShow this: NUMPAD0\n\tMove right: D\n\t");
+		ft_printf("Move left: A\n\tMove up: W\n\tMove down: S\n\t");
+		ft_printf("Zoom in: MOUSEWHEEL UP\n\tZoom out: MOUSEWHEEL DOWN\n\t");
+		ft_printf("Increase precision: MULTIPLY\n\tReduce precision: DIVIDE");
+		ft_printf("Switch colors: ADD/SUBTRACT\n\tMove right: Dn\n\t");
+		ft_printf("Keybinds :\n\tShow this: NUMPAD0\n\tMove right: Dn\n\t");
+	}
 }
 
 int	search_set(char *set)
@@ -26,7 +38,7 @@ int	search_set(char *set)
 		return (2);
 	else if (ft_str_equals(set, "Multibrot"))
 		return (3);
-	syntax_error_msg();
+	print_msg(0);
 	exit(EXIT_FAILURE);
 }
 
@@ -77,4 +89,23 @@ double	ft_atof(char *str)
 	if (str[i] != '\0' && str[i] != '\n')
 		return (3.0);
 	return (result * sign);
+}
+
+int	ft_atoi_parsed(char *nptr)
+{
+	int	i;
+	int	result;
+
+	i = 0;
+	result = 0;
+	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	while (ft_isdigit(nptr[i]))
+	{
+		result = result * 10 + (nptr[i] - '0');
+		i++;
+	}
+	if (nptr[i] != '\0' && nptr[i] != '\n')
+		return (-1);
+	return (result);
 }

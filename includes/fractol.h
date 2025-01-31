@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 23:03:39 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/30 16:50:06 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 12:14:54 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ typedef struct s_data
 }	t_data;
 
 // parsing
-void	syntax_error_msg(void);
+void	print_msg(int nb);
 int		search_set(char *set);
 double	ft_atof(char *str);
+int		ft_atoi_parsed(char *nptr);
 
 // mlx
 void	mlx(void (*set)(), int width, int height, double cx, double cy);

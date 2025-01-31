@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:44:43 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/30 17:14:25 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 11:21:51 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,20 @@
 
 void	set_precision(t_data *data)
 {
-	(void)data;
+	char	*gnl;
+	int		iterations;
+
+	ft_fprintf(0, "iterations > ");
+	gnl = get_next_line(0);
+	iterations = ft_atoi_parsed(gnl);
+	free(gnl);
+	if (iterations <= 0)
+	{
+		ft_fprintf(2, "Syntax Error\n");
+		return ;
+	}
+	data->max_iterations = iterations;
+	draw_fract(data);
 }
 
 int	parse_complex(double *cx, double *cy, char **split)
@@ -54,7 +67,7 @@ void	set_complex(t_data *data)
 
 	if (data->set_index != 0)
 		return ;
-	ft_fprintf(0, "> ");
+	ft_fprintf(0, "complex > ");
 	gnl = get_next_line(0);
 	split = ft_split(gnl, ' ');
 	if (!split)

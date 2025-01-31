@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 13:39:47 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/30 16:54:42 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 12:01:35 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	del_head(t_data *data)
 void	increase_complex(t_data *data)
 {
 	if (data->set_index != 0)
-		return;
+		return ;
 	if (data->cx + 0.1 <= 2)
 		data->cx += 0.1;
 	else
@@ -61,7 +61,7 @@ void	increase_complex(t_data *data)
 void	decrease_complex(t_data *data)
 {
 	if (data->set_index != 0)
-		return;
+		return ;
 	if (data->cx - 0.1 >= -2)
 		data->cx -= 0.1;
 	else

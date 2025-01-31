@@ -6,7 +6,7 @@
 /*   By: agruet <agruet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:55:29 by agruet            #+#    #+#             */
-/*   Updated: 2025/01/27 16:02:32 by agruet           ###   ########.fr       */
+/*   Updated: 2025/01/31 12:14:58 by agruet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int ac, char **av)
 	int		set;
 
 	if (ac < 2)
-		return (syntax_error_msg(), 1);
+		return (print_msg(0), 1);
 	set = search_set(av[1]);
 	if (set == 1)
 		start_julia(ac, av);
